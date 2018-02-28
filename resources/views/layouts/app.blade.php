@@ -16,7 +16,7 @@
 </head>
 <body style="background-color: #deda4b;">
     <div id="app">
-        <center><img src="https://images.pottermore.com/bxd3o8b291gf/2jrSxh9R6IUOwgMKEk00Su/05289da72c3cde29287bb3d22e27d609/wizarding-world-book-club-logo-small.png" style="max-height: 200px;"></center>
+        <center><img src="https://images.pottermore.com/bxd3o8b291gf/2jrSxh9R6IUOwgMKEk00Su/05289da72c3cde29287bb3d22e27d609/wizarding-world-book-club-logo-small.png" style="max-height: 150px;"></center>
         <nav class="navbar navbar-inverse navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -31,7 +31,7 @@
 
                     <!-- Branding Image -->
                     <a class="navbar-brand" href="{{ route('index') }}">
-                        Sekut Shop
+                        WIZARDING WORLD BOOK CLUB
                     </a>
                 </div>
 

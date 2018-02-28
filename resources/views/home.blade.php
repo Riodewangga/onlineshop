@@ -23,8 +23,8 @@
                     <h3>{{ $product->title }}</h3>
                     <p>{{ $product->description }}</p>
                     <div class="clearfix"> 
-                        <div class="pull-left price">${{ $product->price }}</div>
-                        <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-success pull-right" role="button"><i class="fas fa-shopping-bag"></i> Add To Cart</a>
+                        <div class="pull-left price">$ {{ $product->price }}</div>
+                        <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-warning pull-right" role="button"><i class="fas fa-shopping-bag"></i> Add To Cart</a>
                     </div>
                   </div>
                 </div>

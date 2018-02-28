@@ -84,9 +84,7 @@
             @endif
 
             <div class="content">
-                <div class="title m-b-md">
-                    Sekut Shop
-                </div>
+                <center><img src="https://images.pottermore.com/bxd3o8b291gf/2jrSxh9R6IUOwgMKEk00Su/05289da72c3cde29287bb3d22e27d609/wizarding-world-book-club-logo-small.png" style="max-height: 400px;"></center>
             </div>
         </div>
     </body>
