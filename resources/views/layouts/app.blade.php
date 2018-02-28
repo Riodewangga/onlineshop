@@ -28,17 +28,12 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ route('index') }}">
-                        WIZARDING WORLD BOOK CLUB
-                    </a>
                 </div>
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                            &nbsp;
+                    <ul class="nav navbar-nav navbar-left">
+                            <li><a href="{{ route('profile') }}"><i class="fas fa-user-circle"></i> Profile</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->

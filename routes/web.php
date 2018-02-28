@@ -24,3 +24,5 @@ Route::get('/checkout', 'ProductController@getCheckout')->name('checkout');
 Route::post('/checkout', 'ProductController@postCheckout')->name('checkout');
 Route::get('/reduce/{id}', 'ProductController@getReduceByOne')->name('product.reduceByOne');
 Route::get('/remove/{id}', 'ProductController@getRemoveItem')->name('product.remove');
+
+Route::get('/profile', 'ProductController@profile')->name('profile');

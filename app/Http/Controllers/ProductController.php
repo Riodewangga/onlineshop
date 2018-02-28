@@ -21,6 +21,11 @@ class ProductController extends Controller
         return view('home', ['products' => $products]);
     }
 
+    public function profile()
+    {
+        return view('profile');
+    }
+
     public function getAddToCart(Request $request, $id)
     {
         $product = Product::find($id);
