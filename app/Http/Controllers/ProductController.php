@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Category;
+use Storage;
 use App\Product;
 use App\Order;
 use App\Cart;
@@ -15,15 +17,49 @@ use Stripe\Stripe;
 
 class ProductController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::all();
-        return view('home', ['products' => $products]);
+        $search = $request->input('search');
+        $product = Product::latest()
+            ->search($search)
+            ->paginate(env('PER_PAGE'));
+
+        return view('home',compact('product', 'search'));
     }
 
     public function profile()
     {
         return view('profile');
+    }
+
+    public function create()
+    {
+        $categories = Category::all();
+
+        return view('create', compact('categories'));
+    }
+
+    public function store(Request $request)
+    {
+        $imagePath = $request->file('imagePath')->store('imageproduct');
+
+        Product::create([
+            'category_id' => request('category_id'),
+            'imagePath' => $imagePath,
+            'title' => request('title'),
+            'description' => request('description'),
+            'price' => request('price')
+        ]);
+
+        return redirect()->route('index');
+    }
+
+    public function destroy(Product $product)
+    {
+        Storage::delete($product->imagePath);
+        $product->delete();
+
+        return redirect()->route('index');
     }
 
     public function getAddToCart(Request $request, $id)
@@ -36,7 +72,7 @@ class ProductController extends Controller
         $request->session()->put('cart', $cart);
         return redirect()->route('index');
     }
-
+    
     public function getReduceByOne($id)
     {
     	$oldCart = Session::has('cart') ? Session::get('cart') : null;
@@ -119,5 +155,42 @@ class ProductController extends Controller
 
     	Session::forget('cart');
     	return redirect()->route('index')->with('success', 'Successfully purchased products!');
+    }
+
+    public function edit(Product $product)
+    {
+        $categories = Category::all();
+
+
+        return view('edit', compact('product', 'categories'));
+    }
+
+    public function update(Request $request, $id)
+    {
+        $product = Product::find($id);
+        $imagePath = $product->imagePath;
+
+        $this->validate(request(),[
+            'category_id' => 'required',
+            'imagePath' => 'image|mimes:jpg,jpeg,png,bmp',
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
+        if($request->hasFile('imagePath') ){
+            $imagePath = $request->file('imagePath')->store('imageproduct');
+            Storage::delete($product->imagePath);
+        }
+
+        $product->update([
+            'category_id' => request('category_id'),
+            'imagePath' => $imagePath,
+            'title' => request('title'),
+            'description' =>request('description'),
+            'price' => request('price')
+        ]);
+
+        return redirect()->route('index');
     }
 }

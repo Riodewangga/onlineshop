@@ -5,20 +5,20 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <title>NovelShop.com</title>
-
+        <title>ImagineBook.com</title>
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
 
         <!-- Styles -->
         <style>
             html, body {
-                background-color: rgb(222, 218, 75);
-                color: gray;
+                background-color: gray;
                 font-family: 'Raleway', sans-serif;
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
+                background-image: url('http://www.technocrazed.com/wp-content/uploads/2015/11/batman-logo-wallpaper-for-desktop-1080p-139.jpg');
+                background-size: 100%; 
             }
 
             .full-height {
@@ -29,10 +29,7 @@
                 align-items: center;
                 display: flex;
                 justify-content: center;
-            }
-
-            img {
-                max-height: 200px; 
+                color: white;
             }
 
             .position-ref {
@@ -48,6 +45,9 @@
 
             .content {
                 text-align: center;
+                font-size: 130px;
+                background-color: rgba(255,255,255, 0.2);
+                padding: 5px;
             }
 
             .title {
@@ -56,7 +56,7 @@
             }
 
             .links > a {
-                color: gray;
+                color: white;
                 padding: 0 25px;
                 font-size: 15px;
                 font-weight: 600;
@@ -83,9 +83,6 @@
                 </div>
             @endif
 
-            <div class="content">
-                <center><img src="https://images.pottermore.com/bxd3o8b291gf/2jrSxh9R6IUOwgMKEk00Su/05289da72c3cde29287bb3d22e27d609/wizarding-world-book-club-logo-small.png" style="max-height: 400px;"></center>
-            </div>
         </div>
     </body>
 </html>

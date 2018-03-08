@@ -25,4 +25,8 @@ Route::post('/checkout', 'ProductController@postCheckout')->name('checkout');
 Route::get('/reduce/{id}', 'ProductController@getReduceByOne')->name('product.reduceByOne');
 Route::get('/remove/{id}', 'ProductController@getRemoveItem')->name('product.remove');
 
-Route::get('/profile', 'ProductController@profile')->name('profile');
+Route::get('/create', 'ProductController@create')->name('create');
+Route::post('/create', 'ProductController@store')->name('store');
+Route::delete('/create/{product}/delete', 'ProductController@destroy')->name('destroy');
+Route::get('/{product}/edit', 'ProductController@edit')->name('edit');
+Route::patch('/{product}/update', 'ProductController@update')->name('product.update');

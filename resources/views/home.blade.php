@@ -1,36 +1,61 @@
 @extends('layouts.app')
 
 @section('content')
-<link href="{{ asset('css/app.css') }}" rel="stylesheet">
 <br>
-    @if(Session::has('success'))
-        <div class="row">
-            <div class="col-sm-6 col-md-4 col-md-offset-4 col-md-offset-3">
-                <div id="charge-message" class="alert alert-success">
-                    {{ Session::get('success') }}
-                </div>
-            </div>
-        </div>
-    @endif
-@foreach($products->chunk(3) as $productChunk)
+<br>
+<br>
+<div style="position: fixed; top: 250px;">
+    <div class="col-xl">
+        <a href="https://web.facebook.com/rismaco.risma" target="_blank">
+            <i class="fab fa-facebook-f fa-3x btn-primary" style="width: 50px; padding: 4px; height: 45px; margin-bottom: -1px;"></i>
+        </a>
+    </div>
+     <div class="col-xl">
+        <a href="https://www.instagram.com/dewangga.rio/" target="_blank">
+            <i class="fab fa-instagram fa-3x btn-success" style="width: 50px; padding: 4px; height: 45px; margin-bottom: -1px;"></i>
+        </a>
+    </div>
+    <div class="col-xl">
+        <a href="https://plus.google.com/u/0/103457497257577748536" target="_blank">
+            <i class="fab fa-google-plus fa-3x btn-danger" style="width: 50px; padding: 4px; height: 45px; margin-bottom: -1px;"></i>
+        </a>
+    </div>
+</div>
+
 <div class="container">
     <div class="row">
-        @foreach($productChunk as $product)
-             <div class="col-sm-6 col-md-4">
-                <div class="thumbnail">
-                  <img src="{{ $product->imagePath }}" alt="..." class="img-responsive">
-                  <div class="caption">
-                    <h3>{{ $product->title }}</h3>
-                    <p>{{ $product->description }}</p>
-                    <div class="clearfix"> 
-                        <div class="pull-left price">$ {{ $product->price }}</div>
-                        <a href="{{ route('product.addToCart', ['id' => $product->id]) }}" class="btn btn-warning pull-right" role="button"><i class="fas fa-shopping-bag"></i> Add To Cart</a>
+    @foreach ($product as $products)
+        <div class="col-sm-3 col-md-3">
+            <div class="panel">
+                <a href="#" style="text-decoration: none; color: black;">
+                    <img src="{{ asset('storage/'.$products->imagePath) }}" alt="Product" width="260" height="200">
+                    <div class="panel-body">
+                    <div class="caption">
+                        <p><b>{{ $products->title }}</b></p>       
+                </a>
+                    <label style="color: black;">Rp {{ number_format($products->price) }}</label>
+                    <div class="row">
+                    <div class="col-sm-4">
+                        <a href="" class="btn btn-success btn-xs-4"><i class="fas fa-tag"></i> {{ $products->category->name }}</a>
                     </div>
-                  </div>
-                </div>
-              </div>
-        @endforeach
+                    </div>
+                    <hr>
+                    <div class="col-md-3">
+                        <p><a href="{{ route('edit', $products) }}" class="btn btn-deafult btn-primary pull-left" role="button"><i class="fa fa-edit"></i></a></p>
+                    </div>
+                    <form action="{{ route('destroy', $products) }}" method="post">
+                        {{ csrf_field() }}
+                        {{ method_field('DELETE') }}
+                        <button class="btn btn-deafult btn-deafult pull-left" onclick="return confirm('Yakin Mau Hapus ?')"><i class="fa fa-trash"></i></button>
+                    </form>
+
+                    <p><a href="{{ route('product.addToCart', $products) }}" class="btn btn-deafult btn-danger pull-right" role="button"><i class="fas fa-shopping-cart"></i> Add To Cart</a></p>
+            </div>
+        </div>
     </div>
 </div>
 @endforeach
+        </div>
+        <center>{!! $product->appends(['search'=>$search])->links() !!}</center>
+        </div>
 @endsection
