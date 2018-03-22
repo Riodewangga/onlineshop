@@ -1,11 +1,40 @@
-@extends('layouts.app')
+<html lang="{{ app()->getLocale() }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
 
-@section('content')
+        <title>NovelShop.com</title>
+
+        <!-- Fonts -->
+        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <!-- Styles -->
+        <style>
+            html, body {
+                background-color: gray;
+                font-family: 'Raleway', sans-serif;
+                font-weight: 100;
+                height: 100vh;
+                margin: 0;
+                background-image: url(http://www.technocrazed.com/wp-content/uploads/2015/11/batman-logo-wallpaper-for-desktop-1080p-139.jpg);
+                background-size: 100%; 
+            }
+
+            .panel {
+                background-color: rgba(255, 255, 255, 0.2);
+                padding: 15px;
+                color: white;
+                margin-top: 25%;
+            }
+        </style>
+    </head>
+<body>
 <div class="container">
     <div class="row">
-        <div class="col-md-8 col-md-offset-2">
-            <div class="panel panel-default">
-                <div class="panel-heading">Reset Password</div>
+        <div class="col-md-6 col-md-offset-3">
+            <div class="panel">
+                <div class="panel-heading"><center><h2>Reset Password</h2></center></div>
 
                 <div class="panel-body">
                     @if (session('status'))
@@ -44,4 +73,5 @@
         </div>
     </div>
 </div>
-@endsection
+</body>
+</html>

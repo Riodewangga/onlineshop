@@ -13,23 +13,28 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <script defer src="https://use.fontawesome.com/releases/v5.0.6/js/all.js"></script>
+    <style type="text/css">
+        .user-header{
+            padding: 30px;
+            padding-right: 70px;
+            padding-left: 70px;
+            background-color: black;
+        }
 
-        <style type="text/css">
-            .to-top {
-                position: fixed;
-                bottom: 20px;
-                right: 20px;
-                
-            }
+        .user-header p {
+            color: white;
+            font-size: 18px;
+            text-align: center;
+        }
 
-            .to-top:hover{
-                background: #d7d7d7;
-                color: #000;
-            }
-        </style>
+        .img-circle {
+            border: 2px white solid;
+        }
+    </style>
+
 
 </head>
-<body style="background-color: #2782b1;">
+<body>
     <div id="app">
         <center><img src="https://pbs.twimg.com/media/DXmEgerU8AAPIJA.jpg" style="width: 100%;"></center>
         <nav class="navbar navbar-default navbar-static-top">
@@ -51,10 +56,9 @@
                             <li>
                                     <form class="navbar-form" role="search" action="" method="get">
                                         <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search"  name="search" style="width: 156%;" value="{{ isset($search) ? $search : '' }}">
-                                            <div class="input-group-btn">
-                                            </div>
+                                            <input type="text" class="form-control" placeholder="Search"  name="search" style="width: 103%;" value="{{ isset($search) ? $search : '' }}">
                                         </div>
+                                        <button type="submit" class="btn  btn-primary" style="height: 36px;"><i class="fas fa-search"></i></button>
                                     </form>        
                             </li>
                     </ul>
@@ -69,20 +73,23 @@
                         @else
                             
                             <li><a href="{{ route('index') }}"><i class="fas fa-home"></i> Home</a></li>
+                        <ul class="nav navbar-nav">
                             <li class="nav-item dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"><i class="fas fa-cart-arrow-down"></i>
-                                    Category <span class="caret"></span>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"><i class="fas fa-caret-square-down"></i>
+                                    Categori <span class="caret"></span>
                                 </a>
 
+                                @php 
+                                    $category = \App\Category::orderBy('name', 'asc')->get();
+                                @endphp
+
                                 <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="#">Romance</a>
-                                        <a href="#">Comedy</a>
-                                        <a href="#">Action</a>
-                                        <a href="#">Horror</a>
-                                    </li>
+                                    @foreach( $category as $cat )
+                                        <li><a href="{{ route('product.show-by-category',$cat->id) }}"> {{ ucfirst($cat->name) }}</a></li>
+                                    @endforeach
                                 </ul>
                             </li>
+                        </ul> 
                             <li>
                                 <a href="{{ route('product.shoppingCart') }}">
                                     <i class="fas fa-shopping-cart"></i> Shopping Cart
@@ -91,11 +98,17 @@
                             </li>                       
                     <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"><i class="fas fa-user"></i>
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"><img class="img-circle" src="{{ asset('storage/'.auth()->user()->avatar) }}" style="height: 25px; width: 25px;">
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li class="user-header">
+                                        <a href="{{ route('user.edit') }}" style="background-color: black;">
+                                            <img src="{{ asset('storage/'.auth()->user()->avatar) }}" class="img-circle avatar" style="height: 150px; width: 150px;">
+                                            <p>{{ Auth::user()->name }}</p>
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('create') }}"><i class="fas fa-upload"></i> Tambah Data</a>
                                     </li>
@@ -117,35 +130,12 @@
                 </div>
             </div>
         </nav>
-        <div class="col">
-        <a href="#top" class="to-top pull-right" id="scrollTop">
-            <i class="fas fa-arrow-alt-circle-up fa-3x btn-warning" style="width: 50px; padding: 4px; height: 40px;"></i>
-        </a>
-        </div>
-        <script type="text/javascript">
-            $(document).ready(function(){
-                var offset = 250;
-                var duration = 500;
-
-                $(window).scroll(function(){
-                    if($(this).scrollTop() > offset){
-                        $('.to-top').fadeIn(duration);
-                    }else{
-                        $('.to-top').fadeOut(duration);
-                    }
-                });
-
-                $('.to-top').click(function(){
-                    $('body').animate({scrollTop: 0}, duration);
-                });
-            });
-        </script>
-
+        
         @yield('content')
     </div>
     <div id="container">
     <div id="footer">
-        <nav class="nav navbar-default navbar-static-top">
+        <nav class="nav navbar-default navbar-fixed-bottom">
         <center>Copyright &copy; 2018
         Designed by Rio Dewangga</center>
         </nav>

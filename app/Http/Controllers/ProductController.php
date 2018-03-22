@@ -23,8 +23,15 @@ class ProductController extends Controller
         $product = Product::latest()
             ->search($search)
             ->paginate(env('PER_PAGE'));
-
+        // dd($product);
         return view('home',compact('product', 'search'));
+    }
+
+    public function opencart($slug) 
+    {
+        $product = Product::where('slug', $slug)->first();
+
+        return view('opencart', compact('product'));
     }
 
     public function profile()
@@ -41,12 +48,22 @@ class ProductController extends Controller
 
     public function store(Request $request)
     {
+         $this->validate(request(),[
+            'category_id' => 'required',
+            'imagePath' => 'image|mimes:jpg,jpeg,png,bmp',
+            'title' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+        ]);
+
         $imagePath = $request->file('imagePath')->store('imageproduct');
 
         Product::create([
             'category_id' => request('category_id'),
+            'user_id' => auth()->user()->id,
             'imagePath' => $imagePath,
             'title' => request('title'),
+            'slug' => str_slug(request('title'), '-'),
             'description' => request('description'),
             'price' => request('price')
         ]);
@@ -60,6 +77,16 @@ class ProductController extends Controller
         $product->delete();
 
         return redirect()->route('index');
+    }
+
+    public function showProductByCat(Request $request, $categoryId)
+    {
+        $search = $request->input('search');
+        $product = Product::where('category_id', $categoryId)
+            ->search($search)
+            ->paginate(env('PER_PAGE'));
+        // dd($product);
+        return view('showbycat',compact('product', 'search'));
     }
 
     public function getAddToCart(Request $request, $id)
@@ -187,6 +214,7 @@ class ProductController extends Controller
             'category_id' => request('category_id'),
             'imagePath' => $imagePath,
             'title' => request('title'),
+            'slug' => str_slug(request('title'), '-'),
             'description' =>request('description'),
             'price' => request('price')
         ]);

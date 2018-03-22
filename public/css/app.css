@@ -9,17 +9,16 @@
 *{margin:0px auto;}
 #container{
 	position:relative;
-	top: 100%;
+	top: 1%;
 }
  
 #footer {
 	height:50px;
     line-height:50px;
-    background: white;
     color: black;
 
 	position: relative;
-	top: 400px;
+	top: 5px;
 
 	
 }

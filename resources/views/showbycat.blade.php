@@ -29,14 +29,13 @@
     <div class="row">
     @foreach ($product as $products)
         <div class="col-sm-4 col-md-4">
-            <div class="thumbnail" style="background-color: white;">
+            <div class="thumbnail" style="border: 0px black solid; background-color: white;">
                 <img src="{{ asset('storage/'.$products->imagePath) }}" alt="" class="img-responsive">
                 <div class="caption">
                     <h4><b>{{ $products->title }}</b></h4>
                     <p>{{ str_limit($products->description, 25, '...') }}</p>
                     <label style="color: red;">Rp {{ number_format($products->price) }}</label>
-                    <span><a href="{{ route('product.show-by-category', $products->category->id) }}" class="label label-warning"><i class="fas fa-tag"></i> {{ $products->category->name }}</a></span>
-                <hr style="border: 1px silver solid;">
+                <hr>
 
                 @if( $products->user_id == auth()->user()->id)
                 <div class="col-md-2">
@@ -51,7 +50,7 @@
                     </div>
                 @endif
                 <div class="clearfix">
-                    <a href="{{ route('product.opencart', $products->slug) }}" class="btn btn-default btn-success pull-right" role="button"><i class="fas fa-shopping-cart"></i> Buka</a>
+                    <a href="{{ route('product.opencart', $products) }}" class="btn btn-default btn-success pull-right" role="button"><i class="fas fa-shopping-cart"></i> Buka</a>
                 </div>
                 </div>
             </div>

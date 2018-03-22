@@ -22,7 +22,7 @@
         display: block;
       }
 
-      button[type="submit"] {
+      .success {
         margin-top: 10px;
       }
     </style>

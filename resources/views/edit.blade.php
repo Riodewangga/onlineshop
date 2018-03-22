@@ -22,7 +22,7 @@
         display: block;
       }
 
-      button[type="submit"] {
+      pull-right[type="submit"] {
         margin-top: 10px;
       }
     </style>
