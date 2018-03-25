@@ -16,6 +16,7 @@
                     	   <img src="{{ asset('storage/'.$product->imagePath) }}" class="img-thumbnail" alt="Product" width="260" height="260" style="border-radius: 3%;">
                         </div>
                         <p>{{$product->description}}</p>
+                        <p>Testter</p>
 
                         <div class="col-md-12">
                             <label style="color: red;"><h4>Rp {{ number_format($product->price) }}</h4></label>
