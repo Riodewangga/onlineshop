@@ -17,7 +17,7 @@
                 font-weight: 100;
                 height: 100vh;
                 margin: 0;
-                background-image: url('http://www.technocrazed.com/wp-content/uploads/2015/11/batman-logo-wallpaper-for-desktop-1080p-139.jpg');
+                background-image: url('http://wp.widewallpapers.ru/2k/minimalism/1920x1080/minimalism-wallpaper-1920x1080-005.jpg');
                 background-size: 100%; 
             }
 
@@ -72,6 +72,7 @@
     </head>
     <body>
         <div class="flex-center position-ref full-height">
+            <h3><b>Imagine Book</b></h3>
             @if (Route::has('login'))
                 <div class="top-right links">
                     @auth

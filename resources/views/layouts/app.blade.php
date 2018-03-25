@@ -4,6 +4,10 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+<script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
@@ -36,7 +40,7 @@
 </head>
 <body>
     <div id="app">
-        <center><img src="https://pbs.twimg.com/media/DXmEgerU8AAPIJA.jpg" style="width: 100%;"></center>
+        <center><img src="{{ asset('storage/header/header.jpg') }}" style="width: 100%;"></center>
         <nav class="navbar navbar-default navbar-static-top">
             <div class="container">
                 <div class="navbar-header">
@@ -52,19 +56,25 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-left">
-                            <li>
-                                    <form class="navbar-form" role="search" action="" method="get">
-                                        <div class="input-group">
-                                            <input type="text" class="form-control" placeholder="Search"  name="search" style="width: 103%;" value="{{ isset($search) ? $search : '' }}">
-                                        </div>
-                                        <button type="submit" class="btn  btn-primary" style="height: 36px;"><i class="fas fa-search"></i></button>
-                                    </form>        
-                            </li>
+                    <ul class="nav navbar-nav navbar-left" >
+                            <li class="nav-item dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true">
+                                    <i class="fas fa-search fa-1x"></i></button>
+                                </a>
+
+                            <ul class="dropdown-menu" style="width: 300px;">
+                                <li>
+                                        <form class="navbar-form" role="search" action="" method="get">
+                                            <div class="input-group">
+                                                <input type="text" class="form-control" placeholder="Search"  name="search" style="width: 100%;" value="{{ isset($search) ? $search : '' }}">
+                                            </div>
+                                        </form>        
+                                </li>
+                        </ul>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
+                    <ul class="nav navbar-nav navbar-right"  style="float: left; display: inline-block;">
                         <!-- Authentication Links -->
                         @guest
                             <li><a href="{{ route('login') }}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
@@ -76,7 +86,7 @@
                         <ul class="nav navbar-nav">
                             <li class="nav-item dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"><i class="fas fa-caret-square-down"></i>
-                                    Categori <span class="caret"></span>
+                                    Categori 
                                 </a>
 
                                 @php 
@@ -99,7 +109,7 @@
                     <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true"><img class="img-circle" src="{{ asset('storage/'.auth()->user()->avatar) }}" style="height: 25px; width: 25px;">
-                                    {{ Auth::user()->name }} <span class="caret"></span>
+                                    {{ Auth::user()->name }}
                                 </a>
 
                                 <ul class="dropdown-menu">

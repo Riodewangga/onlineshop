@@ -4,7 +4,7 @@
     @if(Session::has('cart'))
       <div class="row">
         <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3">
-          <ul class="list-group">
+          <div class="panel-body">
             @foreach($products as $product)
                     <li class="list-group-item">
                       <span class="badge">{{ $product['qty'] }}</span>
@@ -19,11 +19,11 @@
                       </div>
                     </li>
             @endforeach
-          </ul>
+          </div>
         </div>
       </div>
       <div class="row">
-        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" style="color: white;">
+        <div class="col-sm-6 col-md-6 col-md-offset-3 col-sm-offset-3" style="color: black;">
          <strong>Total: Rp {{ $totalPrice }}</strong>
         </div>
       </div>

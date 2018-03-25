@@ -3,9 +3,9 @@
 @section('content')
 <div class="container">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-6 col-md-offset-3">
       <div class="panel panel-default">
-        <div class="panel panel-heading">\
+        <div class="panel panel-heading">
           <h2>Checkout</h2>
           <h4>Your Total: ${{ $total }}</h4>
           </div>
@@ -16,6 +16,7 @@
           </div>
           <form action="{{ route('checkout') }}" method="post" id="checkout-form">
             <div class="row">
+              <div class="pull-left">
               <div class="col-xs-7">
                 <div class="form-group">
                   <label for="name">Name</label>
@@ -40,7 +41,7 @@
                   <input type="text" id="card-number" class="form-control" required>
                 </div>
               </div>
-              <div class="col-xs-6">
+              <div class="col-xs-7">
                 <div class="row">
                   <div class="col-xs-6">
                     <div class="form-group">
@@ -64,7 +65,8 @@
               </div>
             </div>
             {{ csrf_field() }}
-            <button type="submit" class="btn btn-success"><i class="far fa-credit-card"></i> Buy now</button>
+            &nbsp;&nbsp;&nbsp;&nbsp;<button type="submit" class="btn btn-success"><i class="far fa-credit-card"></i> Buy now</button>
+            </div>
           </form>
           </div>
         </div>
